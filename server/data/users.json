@@ -1,0 +1,15 @@
+[
+  {
+    "id": "u1",
+    "name": "Student"
+  },
+  {
+    "id": "u_mfpmkx10_wqtp1c",
+    "name": "Leela",
+    "email": "eedupugantil@gmail.com",
+    "passwordHash": "2d82157533a45633f85f3772caf2b3487d2568b5afce721ef8ca703f34c17c6e914ffdff5d15736625d6eefac7e377cdc0acd6713873972cb1acc79363c25d0e",
+    "salt": "7ea476ed6a74dbbb6c247357af580331",
+    "role": "student",
+    "token": null
+  }
+]

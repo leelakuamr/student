@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id           String  @id @default(cuid())
+  name         String
+  email        String  @unique
+  passwordHash String
+  salt         String
+  role         String
+  token        String? 
+  groups       GroupMember[]
+  badges       Badge[]
+}
+
+model Group {
+  id          String @id @default(cuid())
+  name        String
+  description String?
+  members     GroupMember[]
+}
+
+model GroupMember {
+  id      String @id @default(cuid())
+  userId  String
+  groupId String
+  user    User   @relation(fields: [userId], references: [id])
+  group   Group  @relation(fields: [groupId], references: [id])
+}
+
+model Badge {
+  id        String @id @default(cuid())
+  title     String
+  awardedAt DateTime @default(now())
+  userId    String
+  user      User @relation(fields: [userId], references: [id])
+}
+
+model Event {
+  id        String @id @default(cuid())
+  title     String
+  startsAt  DateTime
+  createdAt DateTime @default(now())
+}
+
+model Discussion {
+  id String @id @default(cuid())
+  authorId String
+  authorName String
+  content String
+  createdAt DateTime @default(now())
+}
+
+model Submission {
+  id String @id @default(cuid())
+  userId String
+  filename String
+  submittedAt DateTime @default(now())
+  status String
+  path String?
+}
+
+model ChatMessage {
+  id String @id @default(cuid())
+  userId String?
+  role String
+  content String
+  time DateTime @default(now())
+}
+
+model ProgressEntry {
+  id String @id @default(cuid())
+  userId String?
+  course String
+  value Int
+}
