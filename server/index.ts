@@ -7,6 +7,7 @@ import * as edu from "./routes/education";
 import * as auth from "./routes/auth";
 import * as ai from "./routes/ai";
 import * as gm from "./routes/gamification";
+import { errorHandler } from "./middleware/error";
 
 export function createServer() {
   const app = express();
@@ -53,8 +54,7 @@ export function createServer() {
   app.post('/api/events', gm.createEvent);
 
   // error handler
-  const err = require("./middleware/error").errorHandler;
-  app.use(err);
+  app.use(errorHandler);
 
   return app;
 }
