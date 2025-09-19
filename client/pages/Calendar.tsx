@@ -1,3 +1,4 @@
+import React from "react";
 import { CalendarWidget } from "@/components/app/CalendarWidget";
 
 function toICSEvent(title: string, dt: Date) {

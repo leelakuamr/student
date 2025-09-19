@@ -7,8 +7,8 @@ function genId(prefix = "id") {
 
 export const getGroups: RequestHandler = async (req, res) => {
   const groups = await readJSON('groups.json', [
-    { id: 'g1', name: 'Math Study Group', description: 'Algebra and Calculus help' },
-    { id: 'g2', name: 'Science Club', description: 'Chemistry and Physics discussions' }
+    { id: 'g1', name: 'Math Study Group', description: 'Algebra and Calculus help', members: ['u1', 'u2'] },
+    { id: 'g2', name: 'Science Club', description: 'Chemistry and Physics discussions', members: ['u1'] }
   ]);
   res.json({ groups });
 };
@@ -17,7 +17,7 @@ export const createGroup: RequestHandler = async (req, res) => {
   const { name, description } = req.body as { name: string; description?: string };
   if (!name) return res.status(400).json({ error: 'Missing name' });
   const groups = await readJSON('groups.json', [] as any[]);
-  const group = { id: genId('g'), name, description };
+  const group = { id: genId('g'), name, description, members: [] };
   groups.push(group);
   await writeJSON('groups.json', groups);
   res.status(201).json({ group });

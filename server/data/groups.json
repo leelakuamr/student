@@ -1,0 +1,12 @@
+[
+  {
+    "id": "g1",
+    "name": "Math Study Group",
+    "description": "Algebra and Calculus help"
+  },
+  {
+    "id": "g2",
+    "name": "Science Club",
+    "description": "Chemistry and Physics discussions"
+  }
+]
